@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { Route } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 import store from './store';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+
 import Home from './components/Home';
+import SignUpFormContainer from './components/SignUpFormContainer';
+import LoginFormContainer from './components/LoginFormContainer';
 
 class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                <div>
-                    <Route path="/" exact component={Home} />
-                </div>
+                <Container className="main-container">
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/login" component={LoginFormContainer} />
+                    <Route
+                        exact
+                        path="/signup"
+                        component={SignUpFormContainer}
+                    />
+                </Container>
             </Provider>
         );
     }
