@@ -36,7 +36,7 @@ export default function LoginForm(props) {
                         required
                     />
                 </Form.Group>
-                <Button variant="info" type="submit">
+                <Button variant="secondary" type="submit">
                     Submit
                 </Button>
             </Form>

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Loading() {
+export default function MessageLoading() {
     return (
         <Fragment>
             <header>

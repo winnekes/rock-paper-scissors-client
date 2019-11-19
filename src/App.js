@@ -11,6 +11,7 @@ import SignUpFormContainer from './components/SignUpFormContainer';
 import LoginFormContainer from './components/LoginFormContainer';
 import LobbyContainer from './components/LobbyContainer';
 import GameRoomContainer from './components/GameRoomContainer';
+
 class App extends Component {
     stream = new EventSource('http://localhost:4000/stream');
 
@@ -28,7 +29,7 @@ class App extends Component {
                 <Route exact path="/login" component={LoginFormContainer} />
                 <Route exact path="/signup" component={SignUpFormContainer} />
                 <Route exact path="/lobby" component={LobbyContainer} />
-                <Route path="/room/:roomName" component={GameRoomContainer} />
+                <Route path="/room/:name" component={GameRoomContainer} />
             </Container>
         );
     }

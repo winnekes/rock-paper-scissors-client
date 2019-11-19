@@ -16,17 +16,6 @@ export const createRoom = name => (dispatch, getState) => {
         .catch(console.error);
 };
 
-export const joinRoom = name => (dispatch, getState) => {
-    console.log(name);
-    const state = getState();
-    const { user } = state;
-
-    request
-        .get(`${baseUrl}/room/${name}/join`)
-        .set('Authorization', `Bearer ${user}`)
-        .then(response => console.log(response));
-};
-
 export const selectRoom = name => (dispatch, getState) => {
     const state = getState();
     const { user } = state;

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 import CreateRoomContainer from './CreateRoomContainer';
-import Loading from './Loading';
+import MessageLoading from './MessageLoading';
 
 export default function Lobby(props) {
     return (
@@ -12,23 +12,19 @@ export default function Lobby(props) {
                 <Link to="/">Home</Link> | <Link to="/lobby">Lobby</Link>
             </header>
             <main>
-                {!props.rooms && <Loading />}
+                {!props.rooms && <MessageLoading />}
                 {props.rooms.length > 1 && (
                     <Fragment>
-                        <h2>Current games</h2>
+                        <h2>Current Games</h2>
                         {props.rooms.map(room => (
-                            <p>
-                                <Link
-                                    key={room.id}
-                                    to={`/room/${room.name}`}
-                                    onClick={() => props.selectRoom(room.name)}
-                                >
+                            <p key={room.id}>
+                                <Link to={`/room/${room.name}`}>
                                     {room.name}
                                 </Link>{' '}
                                 <br />
                                 Players: {room.users.length}
                                 <br />
-                                Status:
+                                Status: {room.status}
                             </p>
                         ))}
                     </Fragment>
