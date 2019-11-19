@@ -10,6 +10,7 @@ import './App.css';
 import Home from './components/Home';
 import SignUpFormContainer from './components/SignUpFormContainer';
 import LoginFormContainer from './components/LoginFormContainer';
+import LobbyContainer from './components/LobbyContainer';
 
 class App extends Component {
     render() {
@@ -23,6 +24,7 @@ class App extends Component {
                         path="/signup"
                         component={SignUpFormContainer}
                     />
+                    <Route exact path="/lobby" component={LobbyContainer} />
                 </Container>
             </Provider>
         );

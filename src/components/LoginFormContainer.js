@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { login } from '../actions/user';
 
 class LoginFormContainer extends Component {
-    state = { email: '', password: '' };
+    state = { username: '', password: '' };
 
     onSubmit = event => {
         event.preventDefault();
-        this.props.login(this.state.email, this.state.password);
+        this.props.login(this.state.username, this.state.password);
         this.props.history.push('/lobby');
     };
 

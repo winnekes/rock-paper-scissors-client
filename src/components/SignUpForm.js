@@ -1,5 +1,8 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
+import './form.css';
+
 export default function SignUpForm(props) {
     return (
         <Fragment>
@@ -7,32 +10,36 @@ export default function SignUpForm(props) {
                 <h1>Sign up to play</h1>
                 <Link to="/">Home</Link> | <Link to="/login">Login</Link>
             </header>
-            <main>
-                <form onSubmit={props.onSubmit}>
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="email"
-                        value={props.values.email}
-                        onChange={props.onChange}
-                    ></input>
-                    <input
-                        type="username"
+
+            <Form onSubmit={props.onSubmit}>
+                <Form.Group controlId="formBasicName">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control
+                        variant="info"
                         name="username"
-                        placeholder="username"
                         value={props.values.username}
+                        type="username"
                         onChange={props.onChange}
-                    ></input>
-                    <input
-                        type="password"
+                        placeholder="Player name"
+                        required
+                    />
+                </Form.Group>
+
+                <Form.Group controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
                         name="password"
-                        placeholder="password"
                         value={props.values.password}
+                        type="password"
                         onChange={props.onChange}
-                    ></input>
-                    <button type="submit">sign up now</button>
-                </form>
-            </main>
+                        placeholder="Password"
+                        required
+                    />
+                </Form.Group>
+                <Button variant="info" type="submit">
+                    Submit
+                </Button>
+            </Form>
         </Fragment>
     );
 }

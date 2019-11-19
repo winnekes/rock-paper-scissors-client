@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import CreateRoomForm from './CreateRoomForm';
+import { createRoom } from '../actions/rooms';
 
-import SignUpForm from './SignUpForm';
-import { signUp } from '../actions/user';
-
-class SignUpFormContainer extends Component {
+class CreateRoomContainer extends Component {
     state = {
-        username: '',
-        password: '',
+        name: '',
     };
 
     onSubmit = event => {
         event.preventDefault();
-        this.props.signUp(this.state.username, this.state.password);
-        this.props.history.push('/login');
+        this.props.createRoom(this.state.name);
     };
 
     onChange = event => {
@@ -21,10 +18,9 @@ class SignUpFormContainer extends Component {
             [event.target.name]: event.target.value,
         });
     };
-
     render() {
         return (
-            <SignUpForm
+            <CreateRoomForm
                 onSubmit={this.onSubmit}
                 onChange={this.onChange}
                 values={this.state}
@@ -33,4 +29,4 @@ class SignUpFormContainer extends Component {
     }
 }
 
-export default connect(null, { signUp })(SignUpFormContainer);
+export default connect(null, { createRoom })(CreateRoomContainer);

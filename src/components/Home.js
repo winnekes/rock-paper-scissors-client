@@ -19,12 +19,17 @@ class Home extends Component {
                         alt="placeholder"
                         src="https://cdn.shortpixel.ai/client/q_glossy,ret_img,w_400/https://www.testingxperts.com/wp-content/uploads/2019/02/placeholder-img.jpg"
                     />
+                    {this.props.user && (
+                        <Link className="btn btn-info" to="/lobby">
+                            Lobby
+                        </Link>
+                    )}
                     {!this.props.user && (
                         <nav>
-                            <Link className="btn btn-primary" to="/signup">
+                            <Link className="btn btn-info" to="/signup">
                                 Sign Up
                             </Link>
-                            <Link className="btn btn-primary" to="/login">
+                            <Link className="btn btn-info" to="/login">
                                 Login
                             </Link>
                         </nav>
