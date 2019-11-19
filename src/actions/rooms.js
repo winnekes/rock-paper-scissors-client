@@ -1,23 +1,8 @@
 import request from 'superagent';
 
-export const SET_ROOMS = 'SET_ROOMS';
-export const ADD_ROOM = 'ADD_ROOM';
+export const SELECT_ROOM = 'SELECT_ROOM';
 
-const baseUrl = 'https://mygame-server.herokuapp.com';
-
-export const setRooms = payload => {
-    return {
-        type: SET_ROOMS,
-        payload,
-    };
-};
-
-export const addRoom = payload => {
-    return {
-        type: ADD_ROOM,
-        payload,
-    };
-};
+const baseUrl = 'http://localhost:4000';
 
 export const createRoom = name => (dispatch, getState) => {
     const state = getState();
@@ -29,4 +14,25 @@ export const createRoom = name => (dispatch, getState) => {
         .send({ name: name })
         .then(response => console.log(response))
         .catch(console.error);
+};
+
+export const joinRoom = name => (dispatch, getState) => {
+    console.log(name);
+    const state = getState();
+    const { user } = state;
+
+    request
+        .get(`${baseUrl}/room/${name}/join`)
+        .set('Authorization', `Bearer ${user}`)
+        .then(response => console.log(response));
+};
+
+export const selectRoom = name => (dispatch, getState) => {
+    const state = getState();
+    const { user } = state;
+
+    request
+        .get(`${baseUrl}/room/${name}`)
+        .set('Authorization', `Bearer ${user}`)
+        .then(response => console.log(response));
 };

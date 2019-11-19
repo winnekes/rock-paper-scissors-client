@@ -1,5 +1,5 @@
 import request from 'superagent';
-const baseUrl = 'https://mygame-server.herokuapp.com';
+const baseUrl = 'http://localhost:4000';
 
 export const JWT = 'JWT';
 

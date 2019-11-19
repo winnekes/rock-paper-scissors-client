@@ -11,6 +11,9 @@ class CreateRoomContainer extends Component {
     onSubmit = event => {
         event.preventDefault();
         this.props.createRoom(this.state.name);
+        this.setState({
+            name: '',
+        });
     };
 
     onChange = event => {
