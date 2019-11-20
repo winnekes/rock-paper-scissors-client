@@ -22,6 +22,9 @@ class App extends Component {
             this.props.dispatch(parsedData);
         };
     };
+    componentWillUnmount = () => {
+        this.stream.close();
+    };
     render() {
         return (
             <Container className="main-container">
@@ -35,8 +38,4 @@ class App extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return { rooms: state.rooms, user: state.user };
-}
-
-export default connect(mapStateToProps)(App);
+export default connect()(App);

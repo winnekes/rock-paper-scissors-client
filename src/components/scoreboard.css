@@ -1,0 +1,33 @@
+.scoreboard {
+    margin-top: 50px;
+    padding: 20px;
+    background: #e9f0f0;
+    color: grey;
+}
+
+.scoreboard h3 {
+    text-decoration: underline;
+}
+
+.scoreboard .players {
+    display: flex;
+    justify-content: center;
+}
+
+.scoreboard .player {
+    width: 100%;
+    margin: 20px 15px;
+
+    padding-right: 30px;
+    border-right: 3px solid grey;
+
+}
+
+
+.scoreboard .player:last-of-type {
+    border: none;
+}
+
+.scoreboard .player h4 {
+    text-decoration: underline;
+}

@@ -1,14 +1,11 @@
 body {
   background: lightgrey;
-  font-family: 'Raleway', sans-serif;
-  font-size: 16px;
-}
-
-header,
-h1,
-h2,
-h3 {
   font-family: 'Fredoka One',
     cursive;
+  font-size: 16px;
+  letter-spacing: 32x;
+}
+
+header {
   letter-spacing: 3px;
 }

@@ -25,6 +25,15 @@ class GameRoomContainer extends Component {
         console.log(response);
     };
 
+    changeTurn = async () => {
+        const url = `http://localhost:4000/turn/${this.name}`;
+
+        const response = await request
+            .put(url)
+            .set('Authorization', `Bearer ${this.props.user}`);
+        console.log(response);
+    };
+
     componentDidMount = () => {
         if (!this.props.user) this.props.history.push('/login');
     };
@@ -42,6 +51,7 @@ class GameRoomContainer extends Component {
                         room={room}
                         joinRoom={this.joinRoom}
                         startGame={this.startGame}
+                        changeTurn={this.changeTurn}
                     />
                 )}
                 {!this.props.rooms && <p>Loading ...</p>}

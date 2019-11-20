@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import CreateRoomContainer from './CreateRoomContainer';
 import MessageLoading from './MessageLoading';
 
+import './lobby.css';
+
 export default function Lobby(props) {
     return (
         <Fragment>
@@ -13,11 +15,11 @@ export default function Lobby(props) {
             </header>
             <main>
                 {!props.rooms && <MessageLoading />}
-                {props.rooms.length > 1 && (
+                {props.rooms.length > 0 && (
                     <Fragment>
                         <h2>Current Games</h2>
                         {props.rooms.map(room => (
-                            <p key={room.id}>
+                            <p className="room" key={room.id}>
                                 <Link to={`/room/${room.name}`}>
                                     {room.name}
                                 </Link>{' '}
