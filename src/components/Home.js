@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import { logout } from '../actions/user';
 import './styles/home.css';
 class Home extends Component {
     render() {
         return (
             <Fragment>
-                <header>
+                <header className="pulse">
                     <h1>Rock, Paper, Scissors!</h1>
                     <h2>
                         <p>
@@ -22,10 +22,21 @@ class Home extends Component {
                         src="https://image.freepik.com/free-vector/two-girls-playing-paper-scissors-rock_1308-34197.jpg"
                     />
                     {this.props.user && (
-                        <Link className="btn btn-info" to="/lobby">
-                            Lobby
-                        </Link>
+                        <nav>
+                            <Link className="btn btn-info" to="/lobby">
+                                Lobby
+                            </Link>
+
+                            <Link
+                                className="btn btn-info"
+                                to="/"
+                                onClick={() => this.props.dispatch(logout())}
+                            >
+                                Logout
+                            </Link>
+                        </nav>
                     )}
+
                     {!this.props.user && (
                         <nav>
                             <Link className="btn btn-info" to="/signup">
@@ -47,4 +58,4 @@ function mapStateToProps(state) {
     return { user: state.user };
 }
 
-export default connect(mapStateToProps, {})(Home);
+export default connect(mapStateToProps)(Home);

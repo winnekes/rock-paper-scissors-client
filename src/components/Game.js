@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import request from 'superagent';
 
 import Pulse from 'react-reveal/Pulse';
-
+import { baseUrl } from '../constants';
 import './styles/game.css';
 
 class Game extends Component {
@@ -20,7 +20,7 @@ class Game extends Component {
     };
 
     decideWinner = async weapon => {
-        const url = `https://mygame-server.herokuapp.com/decideWinner/${this.props.room.name}`;
+        const url = `${baseUrl}/decideWinner/${this.props.room.name}`;
         const response = await request
             .put(url)
             .set('Authorization', `Bearer ${this.props.user}`)

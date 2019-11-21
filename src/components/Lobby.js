@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import CreateRoomContainer from './CreateRoomContainer';
 import MessageLoading from './MessageLoading';
+import { logout } from '../actions/user';
 
 import './styles/lobby.css';
 
@@ -11,7 +12,10 @@ export default function Lobby(props) {
         <Fragment>
             <header>
                 <h1>Game lobby</h1>
-                <Link to="/">Home</Link> | <Link to="/lobby">Lobby</Link>
+                <Link to="/">Home</Link> | <Link to="/lobby">Lobby</Link> |{' '}
+                <Link to="/" onClick={() => props.dispatch(logout())}>
+                    Logout
+                </Link>
             </header>
             <main>
                 {!props.rooms && <MessageLoading />}

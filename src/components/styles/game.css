@@ -17,9 +17,20 @@
 }
 
 .choices img {
+    margin: 10px;
     border-radius: 50%;
     max-width: 150px;
     height: auto;
     border: 7px solid #31776d;
     box-shadow: 2px 2px lightgray;
+}
+
+@media only screen and (max-width: 768px) {
+    .choices {
+        width: 80%
+    }
+
+    .choices img {
+        width: 100px
+    }
 }

@@ -1,6 +1,6 @@
 import request from 'superagent';
-const baseUrl = 'https://mygame-server.herokuapp.com';
 
+import { baseUrl } from '../constants';
 export const JWT = 'JWT';
 
 export const signUp = (username, password) => dispatch => {
@@ -30,3 +30,7 @@ export const login = (username, password) => dispatch => {
 
         .catch(err => console.log(err));
 };
+
+export const logout = () => ({
+    type: 'LOGOUT',
+});

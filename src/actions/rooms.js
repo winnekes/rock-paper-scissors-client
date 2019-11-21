@@ -1,6 +1,6 @@
 import request from 'superagent';
 
-const baseUrl = 'https://mygame-server.herokuapp.com';
+import { baseUrl } from '../constants';
 
 export const createRoom = name => (dispatch, getState) => {
     const state = getState();

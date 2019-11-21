@@ -1,21 +1,26 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import Flash from 'react-reveal/Flash';
 import Scoreboard from './Scoreboard';
 import Game from './Game';
 import MessageErrorAuth from './MessageErrorAuth';
+import { logout } from '../actions/user';
 
 export default function GameRoom(props) {
     const room = props.room;
 
-    if (!room || !room.users) return <MessageErrorAuth />;
-    else {
+    if (!room || !room.users) {
+        return <Redirect to="/lobby" />;
+    } else {
         return (
             <Fragment>
                 <header>
                     <h1>Room: {room.name}</h1>
-                    <Link to="/">Home</Link> | <Link to="/lobby">Lobby</Link>
+                    <Link to="/">Home</Link> | <Link to="/lobby">Lobby</Link> |
+                    <Link to="/" onClick={() => props.dispatch(logout())}>
+                        Logout
+                    </Link>
                     <br />
                     {(room.status === 'not running' ||
                         room.status === 'waiting for one more player' ||

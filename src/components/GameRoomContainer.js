@@ -5,11 +5,12 @@ import GameRoom from './GameRoom';
 import request from 'superagent';
 import MessageLoading from './MessageLoading';
 
+import { baseUrl } from '../constants';
 class GameRoomContainer extends Component {
     name = this.props.match.params.name;
 
     joinRoom = async () => {
-        const url = `https://mygame-server.herokuapp.com/join/${this.name}`;
+        const url = `${baseUrl}/join/${this.name}`;
 
         const response = await request
             .put(url)
@@ -18,7 +19,7 @@ class GameRoomContainer extends Component {
     };
 
     startGame = async () => {
-        const url = `https://mygame-server.herokuapp.com/start/${this.name}`;
+        const url = `${baseUrl}/start/${this.name}`;
 
         const response = await request
             .put(url)
@@ -28,7 +29,7 @@ class GameRoomContainer extends Component {
 
     endGame = async () => {
         this.props.history.push('/lobby');
-        const url = `https://mygame-server.herokuapp.com/end/${this.name}`;
+        const url = `${baseUrl}/end/${this.name}`;
 
         const response = await request
             .put(url)
@@ -38,7 +39,7 @@ class GameRoomContainer extends Component {
 
     /*
     changeTurn = async () => {
-        const url = `https://mygame-server.herokuapp.com/turn/${this.name}`;
+        const url = `${baseUrl}/turn/${this.name}`;
 
         const response = await request
             .put(url)
@@ -47,7 +48,7 @@ class GameRoomContainer extends Component {
     };
 
      assignPoint = async () => {
-        const url = 'https://mygame-server.herokuapp.com/point';
+        const url = '${baseUrl}/point';
 
         const response = await request
             .put(url)
@@ -74,6 +75,7 @@ class GameRoomContainer extends Component {
                         endGame={this.endGame}
                         user={this.props.user}
                         username={this.props.username}
+                        dispatch={this.props.dispatch}
                     />
                 )}
                 {!this.props.rooms && <MessageLoading />}

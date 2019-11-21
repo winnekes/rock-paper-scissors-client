@@ -10,6 +10,7 @@ class LobbyContainer extends Component {
                 <Lobby
                     rooms={this.props.rooms}
                     username={this.props.username}
+                    dispatch={this.props.dispatch}
                 />
             );
         } else {

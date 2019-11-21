@@ -7,16 +7,8 @@
     text-align: center;
 }
 
-.main-container h1 {
-
-    font-size: 3rem;
-}
-
 .main-container h2 {
     color: gray;
-    font-size: 1.6rem;
-    /*font-style: italic;*/
-
 }
 
 
@@ -45,4 +37,23 @@ a:hover {
 
 .main-container header {
     margin-bottom: 30px;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .main-container {
+
+        width: 80%;
+        margin: 50px auto;
+        padding: 50px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
 }
