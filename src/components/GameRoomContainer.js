@@ -27,13 +27,13 @@ class GameRoomContainer extends Component {
     };
 
     endGame = async () => {
+        this.props.history.push('/lobby');
         const url = `https://mygame-server.herokuapp.com/end/${this.name}`;
 
         const response = await request
             .put(url)
             .set('Authorization', `Bearer ${this.props.user}`);
         console.log(response);
-        this.props.history.push('/lobby');
     };
 
     /*
