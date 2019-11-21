@@ -77,6 +77,7 @@ export default function GameRoom(props) {
                                         players={room.users}
                                         winner={room.winner}
                                         startGame={props.startGame}
+                                        endGame={props.endGame}
                                     />
                                 </Flash>
                                 <Game user={props.user} room={room} />

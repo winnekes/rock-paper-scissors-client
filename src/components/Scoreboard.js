@@ -31,6 +31,9 @@ export default function Scoreboard(props) {
                         >
                             Play another round?
                         </Button>
+                        <Button variant="info" onClick={() => props.endGame()}>
+                            End game
+                        </Button>
                     </Fragment>
                 )}
             </Container>

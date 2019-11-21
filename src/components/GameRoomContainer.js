@@ -25,6 +25,17 @@ class GameRoomContainer extends Component {
             .set('Authorization', `Bearer ${this.props.user}`);
         console.log(response);
     };
+
+    endGame = async () => {
+        const url = `https://mygame-server.herokuapp.com/end/${this.name}`;
+
+        const response = await request
+            .put(url)
+            .set('Authorization', `Bearer ${this.props.user}`);
+        console.log(response);
+        this.props.history.push('/lobby');
+    };
+
     /*
     changeTurn = async () => {
         const url = `https://mygame-server.herokuapp.com/turn/${this.name}`;
@@ -60,6 +71,7 @@ class GameRoomContainer extends Component {
                         room={room}
                         joinRoom={this.joinRoom}
                         startGame={this.startGame}
+                        endGame={this.endGame}
                         user={this.props.user}
                         username={this.props.username}
                     />
