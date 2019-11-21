@@ -2,8 +2,6 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 
-import './form.css';
-
 export default function LoginForm(props) {
     return (
         <Fragment>

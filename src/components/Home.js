@@ -2,22 +2,24 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import './home.css';
+import './styles/home.css';
 class Home extends Component {
     render() {
         return (
             <Fragment>
                 <header>
-                    <h1>My game</h1>
+                    <h1>Rock, Paper, Scissors!</h1>
                     <h2>
-                        lorem ipsum about this game
-                        <br />i hate writing descriptions
+                        <p>
+                            My game skills are not good, neither is my writing
+                            descriptions
+                        </p>
                     </h2>
                 </header>
                 <main>
                     <img
                         alt="placeholder"
-                        src="https://cdn.shortpixel.ai/client/q_glossy,ret_img,w_400/https://www.testingxperts.com/wp-content/uploads/2019/02/placeholder-img.jpg"
+                        src="https://image.freepik.com/free-vector/two-girls-playing-paper-scissors-rock_1308-34197.jpg"
                     />
                     {this.props.user && (
                         <Link className="btn btn-info" to="/lobby">
@@ -29,6 +31,7 @@ class Home extends Component {
                             <Link className="btn btn-info" to="/signup">
                                 Sign Up
                             </Link>
+
                             <Link className="btn btn-info" to="/login">
                                 Login
                             </Link>
@@ -39,6 +42,7 @@ class Home extends Component {
         );
     }
 }
+
 function mapStateToProps(state) {
     return { user: state.user };
 }

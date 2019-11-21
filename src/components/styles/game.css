@@ -1,0 +1,25 @@
+.choices {
+    margin: 0 auto;
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    align-content: center;
+}
+
+.choices div {
+    padding-right: 20px;
+    margin-right: 20px;
+    border-right: 1px dotted lightgray;
+}
+
+.choices div:last-of-type {
+    border: 0;
+}
+
+.choices img {
+    border-radius: 50%;
+    max-width: 150px;
+    height: auto;
+    border: 7px solid #31776d;
+    box-shadow: 2px 2px lightgray;
+}

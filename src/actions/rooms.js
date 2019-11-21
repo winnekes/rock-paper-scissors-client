@@ -1,8 +1,6 @@
 import request from 'superagent';
 
-export const SELECT_ROOM = 'SELECT_ROOM';
-
-const baseUrl = 'http://localhost:4000';
+const baseUrl = 'https://mygame-server.herokuapp.com';
 
 export const createRoom = name => (dispatch, getState) => {
     const state = getState();
@@ -14,14 +12,4 @@ export const createRoom = name => (dispatch, getState) => {
         .send({ name: name })
         .then(response => console.log(response))
         .catch(console.error);
-};
-
-export const selectRoom = name => (dispatch, getState) => {
-    const state = getState();
-    const { user } = state;
-
-    request
-        .get(`${baseUrl}/room/${name}`)
-        .set('Authorization', `Bearer ${user}`)
-        .then(response => console.log(response));
 };

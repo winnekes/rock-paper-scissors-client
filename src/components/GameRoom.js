@@ -1,24 +1,30 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import MessageErrorNotFound from './MessageErrorNotFound';
+import Flash from 'react-reveal/Flash';
 import Scoreboard from './Scoreboard';
+import Game from './Game';
+import MessageErrorAuth from './MessageErrorAuth';
 
 export default function GameRoom(props) {
-    return (
-        <Fragment>
-            {!props.room && <MessageErrorNotFound />}
-            {props.room && (
+    const room = props.room;
+
+    if (!room || !room.users) return <MessageErrorAuth />;
+    else {
+        return (
+            <Fragment>
                 <header>
-                    <h1>Game room: {props.room.name}</h1>
-                    <Link to="/">Home</Link> | <Link to="/lobby">Lobby</Link>{' '}
+                    <h1>Room: {room.name}</h1>
+                    <Link to="/">Home</Link> | <Link to="/lobby">Lobby</Link>
                     <br />
-                    {props.room.status !== 'running' && (
+                    {(room.status === 'not running' ||
+                        room.status === 'waiting for one more player' ||
+                        room.status === 'ready to start') && (
                         <h2>
                             Players:{' '}
-                            {props.room.users.length > 0 &&
-                                props.room.users.map((user, index) => {
-                                    if (index === props.room.users.length - 1) {
+                            {room.users.length > 0 &&
+                                room.users.map((user, index) => {
+                                    if (index === room.users.length - 1) {
                                         return (
                                             <Fragment key={user.id}>
                                                 {user.username}{' '}
@@ -31,44 +37,53 @@ export default function GameRoom(props) {
                                             </Fragment>
                                         );
                                     }
-                                })}{' '}
+                                })}
                             <br />
-                            {props.room.users.length < 1 && (
-                                <Fragment>none</Fragment>
+                            {room.users.length < 1 && (
+                                <Fragment>no players yet</Fragment>
                             )}
                         </h2>
                     )}
                 </header>
-            )}
-            <main>
-                {props.room && props.room.status === 'running' && (
-                    <Scoreboard players={props.room.users} />
-                )}
-                <img
-                    alt="placeholder"
-                    src="https://cdn.shortpixel.ai/client/q_glossy,ret_img,w_400/https://www.testingxperts.com/wp-content/uploads/2019/02/placeholder-img.jpg"
-                />
-                {props.room && props.room.users.length < 2 && (
-                    <Button variant="info" onClick={() => props.joinRoom()}>
-                        Join
-                    </Button>
-                )}
-                {props.room &&
-                    props.room.users.length === 2 &&
-                    props.room.status !== 'running' && (
-                        <Button
-                            variant="info"
-                            onClick={() => props.startGame()}
-                        >
-                            Start the game!
+
+                <main>
+                    {!room.users.some(
+                        user => user.username === props.username
+                    ) && (
+                        <Button variant="info" onClick={() => props.joinRoom()}>
+                            Join
                         </Button>
                     )}
-                {props.room && props.room.status === 'running' && (
-                    <Button variant="info" onClick={() => props.changeTurn()}>
-                        Change turn
-                    </Button>
-                )}
-            </main>
-        </Fragment>
-    );
+                    {room.users.length < 2 &&
+                        room.users.some(
+                            user => user.username === props.username
+                        ) && <p>waiting for one more player</p>}
+                    {room.users.length === 2 &&
+                        room.status !== 'running' &&
+                        room.status !== 'game is over' && (
+                            <Button
+                                variant="info"
+                                onClick={() => props.startGame()}
+                            >
+                                Start!
+                            </Button>
+                        )}
+                    {(room.status === 'running' ||
+                        room.status === 'game is over') &&
+                        room.users.length === 2 && (
+                            <Fragment>
+                                <Flash>
+                                    <Scoreboard
+                                        players={room.users}
+                                        winner={room.winner}
+                                        startGame={props.startGame}
+                                    />
+                                </Flash>
+                                <Game user={props.user} room={room} />
+                            </Fragment>
+                        )}
+                </main>
+            </Fragment>
+        );
+    }
 }

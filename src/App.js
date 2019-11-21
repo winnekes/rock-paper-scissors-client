@@ -5,6 +5,7 @@ import { Container } from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import './components/styles/forms.css';
 
 import Home from './components/Home';
 import SignUpFormContainer from './components/SignUpFormContainer';
@@ -13,7 +14,7 @@ import LobbyContainer from './components/LobbyContainer';
 import GameRoomContainer from './components/GameRoomContainer';
 
 class App extends Component {
-    stream = new EventSource('http://localhost:4000/stream');
+    stream = new EventSource('https://mygame-server.herokuapp.com/stream');
 
     componentDidMount = () => {
         this.stream.onmessage = event => {
@@ -22,9 +23,7 @@ class App extends Component {
             this.props.dispatch(parsedData);
         };
     };
-    componentWillUnmount = () => {
-        this.stream.close();
-    };
+
     render() {
         return (
             <Container className="main-container">

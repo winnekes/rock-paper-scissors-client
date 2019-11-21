@@ -1,23 +1,38 @@
-import React from 'react';
-import { Jumbotron, Container } from 'react-bootstrap';
+import React, { Fragment } from 'react';
+import { Jumbotron, Container, Button } from 'react-bootstrap';
+//import HeadShake from 'react-reveal/HeadShake';
+import Tada from 'react-reveal/Tada';
 
-import './scoreboard.css';
+import './styles/scoreboard.css';
 
 export default function Scoreboard(props) {
-    console.log(props);
     return (
         <Jumbotron className="scoreboard" fluid>
             <Container>
-                <h3>Scoreboard</h3>
                 <div className="players">
                     {props.players.map(player => (
                         <div className="player" key={player.id}>
                             <h4>{player.username}</h4>
                             <p>Points: {player.points}</p>
-                            {player.turn && <p>playing now</p>}
+                            {/*                             {player.turn && (
+                                <HeadShake>it's your turn!</HeadShake>
+                            )} */}
                         </div>
                     ))}
                 </div>
+                {props.winner !== 'no winner' && (
+                    <Fragment>
+                        <h3>
+                            the winner is: <Tada>{props.winner}</Tada>
+                        </h3>
+                        <Button
+                            variant="info"
+                            onClick={() => props.startGame()}
+                        >
+                            Play another round?
+                        </Button>
+                    </Fragment>
+                )}
             </Container>
         </Jumbotron>
     );

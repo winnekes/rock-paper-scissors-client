@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import CreateRoomContainer from './CreateRoomContainer';
 import MessageLoading from './MessageLoading';
 
-import './lobby.css';
+import './styles/lobby.css';
 
 export default function Lobby(props) {
     return (
@@ -18,13 +18,17 @@ export default function Lobby(props) {
                 {props.rooms.length > 0 && (
                     <Fragment>
                         <h2>Current Games</h2>
+                        <h4>
+                            Welcome, {props.username}! Join a room or create
+                            one!{' '}
+                        </h4>
                         {props.rooms.map(room => (
                             <p className="room" key={room.id}>
                                 <Link to={`/room/${room.name}`}>
                                     {room.name}
                                 </Link>{' '}
                                 <br />
-                                Players: {room.users.length}
+                                Players: {room.users.length}/2
                                 <br />
                                 Status: {room.status}
                             </p>

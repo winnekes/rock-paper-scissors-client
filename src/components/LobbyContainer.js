@@ -6,7 +6,12 @@ import MessageErrorAuth from './MessageErrorAuth';
 class LobbyContainer extends Component {
     render() {
         if (this.props.user) {
-            return <Lobby rooms={this.props.rooms} />;
+            return (
+                <Lobby
+                    rooms={this.props.rooms}
+                    username={this.props.username}
+                />
+            );
         } else {
             return <MessageErrorAuth />;
         }
@@ -14,7 +19,7 @@ class LobbyContainer extends Component {
 }
 
 function mapStateToProps(state) {
-    return { rooms: state.rooms, user: state.user };
+    return { rooms: state.rooms, user: state.user, username: state.username };
 }
 
 export default connect(mapStateToProps)(LobbyContainer);

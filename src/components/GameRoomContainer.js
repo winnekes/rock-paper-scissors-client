@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import GameRoom from './GameRoom';
 
 import request from 'superagent';
+import MessageLoading from './MessageLoading';
 
 class GameRoomContainer extends Component {
     name = this.props.match.params.name;
 
     joinRoom = async () => {
-        const url = `http://localhost:4000/join/${this.name}`;
+        const url = `https://mygame-server.herokuapp.com/join/${this.name}`;
 
         const response = await request
             .put(url)
@@ -17,22 +18,31 @@ class GameRoomContainer extends Component {
     };
 
     startGame = async () => {
-        const url = `http://localhost:4000/start/${this.name}`;
+        const url = `https://mygame-server.herokuapp.com/start/${this.name}`;
 
         const response = await request
             .put(url)
             .set('Authorization', `Bearer ${this.props.user}`);
         console.log(response);
     };
-
+    /*
     changeTurn = async () => {
-        const url = `http://localhost:4000/turn/${this.name}`;
+        const url = `https://mygame-server.herokuapp.com/turn/${this.name}`;
 
         const response = await request
             .put(url)
             .set('Authorization', `Bearer ${this.props.user}`);
         console.log(response);
     };
+
+     assignPoint = async () => {
+        const url = 'https://mygame-server.herokuapp.com/point';
+
+        const response = await request
+            .put(url)
+            .set('Authorization', `Bearer ${this.props.user}`);
+        console.log(response);
+    }; */
 
     componentDidMount = () => {
         if (!this.props.user) this.props.history.push('/login');
@@ -47,21 +57,21 @@ class GameRoomContainer extends Component {
             <Fragment>
                 {this.props.rooms && (
                     <GameRoom
-                        name={this.name}
                         room={room}
                         joinRoom={this.joinRoom}
                         startGame={this.startGame}
-                        changeTurn={this.changeTurn}
+                        user={this.props.user}
+                        username={this.props.username}
                     />
                 )}
-                {!this.props.rooms && <p>Loading ...</p>}
+                {!this.props.rooms && <MessageLoading />}
             </Fragment>
         );
     }
 }
 
 function mapStateToProps(state) {
-    return { user: state.user, rooms: state.rooms };
+    return { user: state.user, rooms: state.rooms, username: state.username };
 }
 
 export default connect(mapStateToProps)(GameRoomContainer);
