@@ -1,5 +1,5 @@
 .scoreboard {
-    margin: 60px auto;
+    margin: 30px auto;
     padding: 20px;
     background: #e9f0f0;
     color: grey;
@@ -22,8 +22,9 @@
 
 .scoreboard .player {
     width: 100%;
-    padding-right: 5px;
+    padding: 0 5px;
     border-right: 3px solid grey;
+    text-align: center;
 
 }
 

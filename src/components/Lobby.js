@@ -22,12 +22,17 @@ export default function Lobby(props) {
                 {props.rooms.length > 0 && (
                     <Fragment>
                         <h4>
-                            Welcome, {props.username}! Join a room or create
-                            one!{' '}
+                            Welcome, {props.username}! <br />
+                            Join a room or create one!{' '}
                         </h4>
                         <h2>Current Games</h2>
                         {props.rooms.map(room => {
-                            if (room.users.length > 1) {
+                            if (
+                                room.users.length > 1 &&
+                                !room.users.some(
+                                    user => user.username === props.username
+                                )
+                            ) {
                                 return (
                                     <p className="room" key={room.id}>
                                         <span>{room.name}</span>

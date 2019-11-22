@@ -13,6 +13,7 @@ export default function CreateRoomForm(props) {
                     type="name"
                     onChange={props.onChange}
                     placeholder="Room name"
+                    maxlength="10"
                     required
                 />
             </Form.Group>

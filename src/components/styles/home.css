@@ -1,7 +1,7 @@
 .main-container {
     margin: 50px auto;
     padding: 50px;
-    width: 45%;
+    width: 50%;
     background: white;
     border-radius: 10px;
     text-align: center;
@@ -9,6 +9,7 @@
 
 .main-container h2 {
     color: gray;
+
 }
 
 
@@ -35,25 +36,38 @@ a:hover {
 
 }
 
+
 .main-container header {
     margin-bottom: 30px;
+}
+
+.mainImg {
+    padding: 40px 0;
+    height: 300px !important;
+    width: auto;
 }
 
 @media only screen and (max-width: 768px) {
 
     .main-container {
 
-        width: 80%;
+        width: 90%;
         margin: 50px auto;
         padding: 50px;
     }
 
     h1 {
         font-size: 1.8rem;
+        ;
     }
 
     h2 {
-        font-size: 1.5rem;
+        font-size: 1.0rem;
+    }
+
+    .mainImg {
+
+        height: 250px !important;
     }
 
 }

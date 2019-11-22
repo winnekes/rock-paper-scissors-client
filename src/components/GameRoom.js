@@ -77,7 +77,9 @@ export default function GameRoom(props) {
                         room.status !== 'game is over' && (
                             <Button
                                 variant="info"
-                                onClick={() => props.startGame()}
+                                onClick={() => {
+                                    props.startGame();
+                                }}
                             >
                                 Start!
                             </Button>

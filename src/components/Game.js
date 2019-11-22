@@ -1,10 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import request from 'superagent';
-
-import Pulse from 'react-reveal/Pulse';
 import { baseUrl } from '../constants';
 import './styles/game.css';
+import winRoundFile from './sounds/win_round.mp3';
+import loseRoundFile from './sounds/lose_round.mp3';
+import UIfx from 'uifx';
+
+const winRound = new UIfx(winRoundFile, { volume: 0.4, throttleMs: 100 });
+const loseRound = new UIfx(loseRoundFile, { volume: 0.4, throttleMs: 100 });
 
 class Game extends Component {
     images = {
@@ -19,6 +23,9 @@ class Game extends Component {
         rock: 'https://i.imgur.com/8YOLpwa.png',
     };
 
+    state = {
+        soundPlayed: false,
+    };
     decideWinner = async weapon => {
         const url = `${baseUrl}/decideWinner/${this.props.room.name}`;
         const response = await request
@@ -26,16 +33,27 @@ class Game extends Component {
             .set('Authorization', `Bearer ${this.props.user}`)
             .send({ choice: weapon });
     };
-
+    playSound = () => {
+        if (!this.state.soundPlayed && this.props.room.winner !== 'no winner') {
+            if (this.props.room.winner === this.props.username) {
+                winRound.play();
+                this.setState({ soundPlayed: true });
+            } else {
+                loseRound.play();
+                this.setState({ soundPlayed: true });
+            }
+        } else if (this.state.soundPlayed !== false) {
+            this.setState({ soundPlayed: false });
+        }
+    };
     render() {
-        console.log(this.props.room);
-
         const thisPlayer = this.props.room.users.find(
             user => user.username === this.props.username
         );
         const otherPlayer = this.props.room.users.find(
             user => user.username !== this.props.username
         );
+
         return (
             <div>
                 {thisPlayer && (
@@ -89,6 +107,14 @@ class Game extends Component {
 
                                     <p>waiting for other player ...</p>
                                 </Fragment>
+                            )}
+                        {otherPlayer.choice !== 'no choice' &&
+                            this.props.room.winner === 'no winner' && (
+                                <p>
+                                    {otherPlayer.username} has chosen. Don't
+                                    think too hard, go with your gut ... decide
+                                    now.
+                                </p>
                             )}
                         {thisPlayer.choice !== 'no choice' &&
                             this.props.room.winner !== 'no winner' && (

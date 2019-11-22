@@ -6,9 +6,9 @@ import request from 'superagent';
 import MessageLoading from './MessageLoading';
 
 import { baseUrl } from '../constants';
+
 class GameRoomContainer extends Component {
     name = this.props.match.params.name;
-
     joinRoom = async () => {
         const url = `${baseUrl}/join/${this.name}`;
 
