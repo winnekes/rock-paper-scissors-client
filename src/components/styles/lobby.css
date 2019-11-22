@@ -8,3 +8,25 @@
 .room:last-of-type {
     border: none
 }
+
+.room:first-of-type {
+    margin-top: 30px;
+}
+
+.room span {
+    font-size: 110%;
+}
+
+main h4 {
+    margin: 40px 0;
+    padding: 20px;
+    font-size: 1.2rem;
+    color: #216474;
+    background: #f3f3f3;
+    border-radius: 10px
+}
+
+h3 {
+    font-size: 1.2rem;
+    color: #20A5AA
+}

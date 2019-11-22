@@ -16,11 +16,20 @@ export default function GameRoom(props) {
         return (
             <Fragment>
                 <header>
-                    <h1>Room: {room.name}</h1>
-                    <Link to="/">Home</Link> | <Link to="/lobby">Lobby</Link> |
-                    <Link to="/" onClick={() => props.dispatch(logout())}>
-                        Logout
-                    </Link>
+                    <h3>Game Room</h3>
+                    <h1> {room.name}</h1>
+                    {room.status !== 'game is over' && (
+                        <nav>
+                            <Link to="/">Home</Link> |{' '}
+                            <Link to="/lobby">Lobby</Link> |{' '}
+                            <Link
+                                to="/"
+                                onClick={() => props.dispatch(logout())}
+                            >
+                                Logout
+                            </Link>
+                        </nav>
+                    )}
                     <br />
                     {(room.status === 'not running' ||
                         room.status === 'waiting for one more player' ||

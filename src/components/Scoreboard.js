@@ -13,7 +13,7 @@ export default function Scoreboard(props) {
                     {props.players.map(player => (
                         <div className="player" key={player.id}>
                             <h4>{player.username}</h4>
-                            <p>Points: {player.points}</p>
+                            Points: {player.points}
                             {/*                             {player.turn && (
                                 <HeadShake>it's your turn!</HeadShake>
                             )} */}
@@ -31,8 +31,11 @@ export default function Scoreboard(props) {
                         >
                             Play another round?
                         </Button>
-                        <Button variant="info" onClick={() => props.endGame()}>
-                            End game
+                        <Button
+                            variant="danger"
+                            onClick={() => props.endGame()}
+                        >
+                            End game and back to lobby
                         </Button>
                     </Fragment>
                 )}

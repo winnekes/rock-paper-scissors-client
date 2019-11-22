@@ -7,12 +7,12 @@ class Home extends Component {
     render() {
         return (
             <Fragment>
-                <header className="pulse">
+                <header>
                     <h1>Rock, Paper, Scissors!</h1>
                     <h2>
                         <p>
-                            My game skills are not good, neither is my writing
-                            descriptions
+                            Schnick, schnack, schnuck or ching chong cha - there
+                            are many names for this beloved game.{' '}
                         </p>
                     </h2>
                 </header>

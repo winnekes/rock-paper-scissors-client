@@ -21,22 +21,35 @@ export default function Lobby(props) {
                 {!props.rooms && <MessageLoading />}
                 {props.rooms.length > 0 && (
                     <Fragment>
-                        <h2>Current Games</h2>
                         <h4>
                             Welcome, {props.username}! Join a room or create
                             one!{' '}
                         </h4>
-                        {props.rooms.map(room => (
-                            <p className="room" key={room.id}>
-                                <Link to={`/room/${room.name}`}>
-                                    {room.name}
-                                </Link>{' '}
-                                <br />
-                                Players: {room.users.length}/2
-                                <br />
-                                Status: {room.status}
-                            </p>
-                        ))}
+                        <h2>Current Games</h2>
+                        {props.rooms.map(room => {
+                            if (room.users.length > 1) {
+                                return (
+                                    <p className="room" key={room.id}>
+                                        <span>{room.name}</span>
+                                        <br />
+                                        This room is full. <br />
+                                        Maybe join a different one?
+                                    </p>
+                                );
+                            } else {
+                                return (
+                                    <p className="room" key={room.id}>
+                                        <Link to={`/room/${room.name}`}>
+                                            <span>{room.name}</span>
+                                        </Link>
+                                        <br />
+                                        Players: {room.users.length}/2
+                                        <br />
+                                        Status: {room.status}
+                                    </p>
+                                );
+                            }
+                        })}
                     </Fragment>
                 )}
                 <hr />

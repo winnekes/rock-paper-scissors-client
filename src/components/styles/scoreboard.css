@@ -1,24 +1,28 @@
 .scoreboard {
-    margin: 60px 0;
+    margin: 60px auto;
     padding: 20px;
     background: #e9f0f0;
     color: grey;
+    text-align: center
 }
 
 .scoreboard h3 {
+    margin-top: 50px;
+    margin-bottom: 20px;
     text-decoration: underline;
+
 }
 
 .scoreboard .players {
     display: flex;
-    justify-content: center;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: space-between;
 }
 
 .scoreboard .player {
     width: 100%;
-    margin: 20px 15px;
-
-    padding-right: 30px;
+    padding-right: 5px;
     border-right: 3px solid grey;
 
 }
@@ -26,8 +30,12 @@
 
 .scoreboard .player:last-of-type {
     border: none;
+
 }
 
 .scoreboard .player h4 {
     text-decoration: underline;
+    background: none;
+    margin: 10px 0;
+    padding: 0
 }

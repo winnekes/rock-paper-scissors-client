@@ -47,32 +47,31 @@ class Game extends Component {
 
                                     <h3>Make your choice now!</h3>
                                     <div className="choices">
-                                        <Pulse>
-                                            <img
-                                                alt=""
-                                                src={this.images.scissors}
-                                                onClick={() =>
-                                                    this.decideWinner(
-                                                        'scissors'
-                                                    )
-                                                }
-                                            />
+                                        <img
+                                            className="pulse"
+                                            alt=""
+                                            src={this.images.scissors}
+                                            onClick={() =>
+                                                this.decideWinner('scissors')
+                                            }
+                                        />
 
-                                            <img
-                                                alt=""
-                                                src={this.images.paper}
-                                                onClick={() =>
-                                                    this.decideWinner('paper')
-                                                }
-                                            />
-                                            <img
-                                                alt=""
-                                                src={this.images.rock}
-                                                onClick={() =>
-                                                    this.decideWinner('rock')
-                                                }
-                                            />
-                                        </Pulse>
+                                        <img
+                                            alt=""
+                                            className="pulse"
+                                            src={this.images.paper}
+                                            onClick={() =>
+                                                this.decideWinner('paper')
+                                            }
+                                        />
+                                        <img
+                                            alt=""
+                                            className="pulse"
+                                            src={this.images.rock}
+                                            onClick={() =>
+                                                this.decideWinner('rock')
+                                            }
+                                        />
                                     </div>
                                 </Fragment>
                             )}
@@ -81,16 +80,11 @@ class Game extends Component {
                                 <Fragment>
                                     <h3>You chose: {thisPlayer.choice}</h3>
                                     <div className="choices">
-                                        <Pulse>
-                                            <img
-                                                alt=""
-                                                src={
-                                                    this.images[
-                                                        thisPlayer.choice
-                                                    ]
-                                                }
-                                            />
-                                        </Pulse>
+                                        <img
+                                            alt=""
+                                            className="pulse"
+                                            src={this.images[thisPlayer.choice]}
+                                        />
                                     </div>
 
                                     <p>waiting for other player ...</p>
@@ -101,37 +95,31 @@ class Game extends Component {
                                 <Fragment>
                                     <div className="choices">
                                         <div>
-                                            <h3>
-                                                You chose: {thisPlayer.choice}
-                                            </h3>
-                                            <Pulse>
-                                                <img
-                                                    alt=""
-                                                    src={
-                                                        this.images[
-                                                            thisPlayer.choice
-                                                        ]
-                                                    }
-                                                />
-                                            </Pulse>
+                                            <h3>You:</h3>
+
+                                            <img
+                                                alt=""
+                                                className="pulse"
+                                                src={
+                                                    this.images[
+                                                        thisPlayer.choice
+                                                    ]
+                                                }
+                                            />
                                         </div>
 
                                         <div>
-                                            <h3>
-                                                {otherPlayer.username} chose:{' '}
-                                                {otherPlayer.choice}
-                                            </h3>
+                                            <h3>{otherPlayer.username}:</h3>
 
-                                            <Pulse>
-                                                <img
-                                                    alt=""
-                                                    src={
-                                                        this.imagesReversed[
-                                                            otherPlayer.choice
-                                                        ]
-                                                    }
-                                                />
-                                            </Pulse>
+                                            <img
+                                                alt=""
+                                                className="pulse"
+                                                src={
+                                                    this.imagesReversed[
+                                                        otherPlayer.choice
+                                                    ]
+                                                }
+                                            />
                                         </div>
                                     </div>
                                 </Fragment>
