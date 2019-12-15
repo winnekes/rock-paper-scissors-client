@@ -119,6 +119,7 @@ class Game extends Component {
                         {thisPlayer.choice !== 'no choice' &&
                             this.props.room.winner !== 'no winner' && (
                                 <Fragment>
+                                    {this.playSound()}
                                     <div className="choices">
                                         <div>
                                             <h3>You:</h3>
