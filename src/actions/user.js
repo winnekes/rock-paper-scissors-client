@@ -3,14 +3,6 @@ import request from 'superagent';
 import { baseUrl } from '../constants';
 export const JWT = 'JWT';
 
-export const signUp = (username, password) => dispatch => {
-    request
-        .post(`${baseUrl}/user`)
-        .send({ username, password })
-        .then(response => console.log(response))
-        .catch(err => console.log(err));
-};
-
 function jwt(payload, username) {
     return {
         type: JWT,
@@ -19,6 +11,32 @@ function jwt(payload, username) {
     };
 }
 
+function setErrorMessage(payload) {
+    return {
+        type: 'SET_ERROR_MESSAGE',
+        error: payload,
+    };
+}
+
+export function clearErrorMessage() {
+    return {
+        type: 'CLEAR_ERROR_MESSAGE',
+    };
+}
+
+export const signUp = (username, password) => dispatch => {
+    request
+        .post(`${baseUrl}/user`)
+        .send({ username, password })
+        .then(response => dispatch(clearErrorMessage()))
+        .catch(err => {
+            const action = setErrorMessage(
+                JSON.parse(err.response.text).message
+            );
+            dispatch(action);
+        });
+};
+
 export const login = (username, password) => dispatch => {
     request
         .post(`${baseUrl}/login`)
@@ -26,9 +44,15 @@ export const login = (username, password) => dispatch => {
         .then(response => {
             const action = jwt(response.body.jwt, username);
             dispatch(action);
+            dispatch(clearErrorMessage());
         })
 
-        .catch(err => console.log(err));
+        .catch(err => {
+            const action = setErrorMessage(
+                JSON.parse(err.response.text).message
+            );
+            dispatch(action);
+        });
 };
 
 export const logout = () => ({

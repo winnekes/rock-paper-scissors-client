@@ -12,49 +12,31 @@ class GameRoomContainer extends Component {
     joinRoom = async () => {
         const url = `${baseUrl}/join/${this.name}`;
 
-        const response = await request
+         await request
             .put(url)
             .set('Authorization', `Bearer ${this.props.user}`);
-        console.log(response);
+     
     };
 
     startGame = async () => {
         const url = `${baseUrl}/start/${this.name}`;
 
-        const response = await request
+         await request
             .put(url)
             .set('Authorization', `Bearer ${this.props.user}`);
-        console.log(response);
+      
     };
 
     endGame = async () => {
         this.props.history.push('/lobby');
         const url = `${baseUrl}/end/${this.name}`;
 
-        const response = await request
+         await request
             .put(url)
             .set('Authorization', `Bearer ${this.props.user}`);
-        console.log(response);
+    
     };
 
-    /*
-    changeTurn = async () => {
-        const url = `${baseUrl}/turn/${this.name}`;
-
-        const response = await request
-            .put(url)
-            .set('Authorization', `Bearer ${this.props.user}`);
-        console.log(response);
-    };
-
-     assignPoint = async () => {
-        const url = '${baseUrl}/point';
-
-        const response = await request
-            .put(url)
-            .set('Authorization', `Bearer ${this.props.user}`);
-        console.log(response);
-    }; */
 
     componentDidMount = () => {
         if (!this.props.user) this.props.history.push('/login');

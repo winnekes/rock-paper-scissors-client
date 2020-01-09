@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 
 export default function LoginForm(props) {
     return (
@@ -38,6 +38,7 @@ export default function LoginForm(props) {
                     Submit
                 </Button>
             </Form>
+            {props.error && <Alert variant="danger">{props.error}</Alert>}
         </Fragment>
     );
 }

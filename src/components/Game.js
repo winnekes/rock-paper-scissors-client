@@ -22,7 +22,7 @@ class Game extends Component {
     };
     decideWinner = async weapon => {
         const url = `${baseUrl}/decideWinner/${this.props.room.name}`;
-        const response = await request
+        await request
             .put(url)
             .set('Authorization', `Bearer ${this.props.user}`)
             .send({ choice: weapon });

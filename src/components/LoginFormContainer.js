@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LoginForm from './LoginForm';
 import { connect } from 'react-redux';
-import { login } from '../actions/user';
+import { login, clearErrorMessage } from '../actions/user';
 
 class LoginFormContainer extends Component {
     state = { username: '', password: '' };
@@ -9,7 +9,13 @@ class LoginFormContainer extends Component {
     onSubmit = event => {
         event.preventDefault();
         this.props.login(this.state.username, this.state.password);
-        this.props.history.push('/lobby');
+        setTimeout(() => {
+            if (this.props.error) {
+                console.log(this.props.error);
+            } else {
+                this.props.history.push('/lobby');
+            }
+        }, 500);
     };
 
     onChange = event => {
@@ -18,15 +24,27 @@ class LoginFormContainer extends Component {
         });
     };
 
+    componentDidMount = () => {
+        this.props.clearErrorMessage();
+    };
+
     render() {
         return (
             <LoginForm
                 onSubmit={this.onSubmit}
                 onChange={this.onChange}
                 values={this.state}
+                error={this.props.error}
             />
         );
     }
 }
 
-export default connect(null, { login })(LoginFormContainer);
+const mapStateToProps = state => {
+    return {
+        error: state.error,
+    };
+};
+export default connect(mapStateToProps, { login, clearErrorMessage })(
+    LoginFormContainer
+);
