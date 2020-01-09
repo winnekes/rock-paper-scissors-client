@@ -1,12 +1,15 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button, Alert } from 'react-bootstrap';
+import Tada from 'react-reveal/Tada';
 
 export default function LoginForm(props) {
     return (
         <Fragment>
             <header>
-                <h1>Login</h1>
+                <Tada>
+                    <h1>Login</h1>
+                </Tada>
                 <Link to="/">Home</Link> | <Link to="/signup">Sign up</Link>
             </header>
             <Form onSubmit={props.onSubmit}>

@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../actions/user';
 import './styles/home.css';
-
+import Tada from 'react-reveal/Tada';
 class Home extends Component {
     render() {
         return (
             <Fragment>
                 <header className="home">
-                    <h1>Rock, Paper, Scissors!</h1>
+                    <Tada>
+                        <h1>Rock, Paper, Scissors!</h1>
+                    </Tada>
                     <p className="description">
                         Schnick, schnack, schnuck or ching chong cha - there are
                         many names for this beloved game.{' '}

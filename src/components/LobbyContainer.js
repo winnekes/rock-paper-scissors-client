@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Lobby from './Lobby';
 
 import MessageErrorAuth from './MessageErrorAuth';
+import { Redirect } from 'react-router';
 class LobbyContainer extends Component {
     render() {
         if (this.props.user) {
@@ -14,7 +15,7 @@ class LobbyContainer extends Component {
                 />
             );
         } else {
-            return <MessageErrorAuth />;
+            return <Redirect to="/" />;
         }
     }
 }

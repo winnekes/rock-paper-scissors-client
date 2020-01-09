@@ -4,14 +4,17 @@ import { Link } from 'react-router-dom';
 import CreateRoomContainer from './CreateRoomContainer';
 import MessageLoading from './MessageLoading';
 import { logout } from '../actions/user';
-
+import Tada from 'react-reveal/Tada';
 import './styles/lobby.css';
+import { Alert } from 'react-bootstrap';
 
 export default function Lobby(props) {
     return (
         <Fragment>
             <header>
-                <h1>Game lobby</h1>
+                <Tada>
+                    <h1>Game lobby</h1>
+                </Tada>
                 <Link to="/">Home</Link> | <Link to="/lobby">Lobby</Link> |{' '}
                 <Link to="/" onClick={() => props.dispatch(logout())}>
                     Logout
@@ -19,6 +22,11 @@ export default function Lobby(props) {
             </header>
             <main>
                 {!props.rooms && <MessageLoading />}
+                {props.rooms.length < 1 && (
+                    <Alert variant="info">
+                        No games at the moment, how about you create one?
+                    </Alert>
+                )}
                 {props.rooms.length > 0 && (
                     <Fragment>
                         <h4>
@@ -26,6 +34,7 @@ export default function Lobby(props) {
                             Join a room or create one!{' '}
                         </h4>
                         <h2>Current Games</h2>
+
                         {props.rooms.map(room => {
                             if (
                                 room.users.length > 1 &&
