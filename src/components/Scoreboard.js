@@ -4,21 +4,9 @@ import Tada from 'react-reveal/Tada';
 
 import './styles/scoreboard.css';
 
-import UIfx from 'uifx';
-import startGame from './sounds/start_game.mp3';
-
-const beep = new UIfx(startGame, { volume: 0.4, throttleMs: 100 });
-let soundPlayed = false;
-function playSound() {
-    if (!soundPlayed) {
-        beep.play();
-        soundPlayed = true;
-    }
-}
 export default function Scoreboard(props) {
     return (
         <Jumbotron className="scoreboard" fluid>
-            {/*     {playSound()} */}
             <Container>
                 <div className="players">
                     {props.players.map(player => (

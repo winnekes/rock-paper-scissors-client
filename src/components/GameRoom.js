@@ -4,7 +4,6 @@ import { Button } from 'react-bootstrap';
 import Flash from 'react-reveal/Flash';
 import Scoreboard from './Scoreboard';
 import Game from './Game';
-import MessageErrorAuth from './MessageErrorAuth';
 import { logout } from '../actions/user';
 
 export default function GameRoom(props) {

@@ -3,12 +3,6 @@ import { connect } from 'react-redux';
 import request from 'superagent';
 import { baseUrl } from '../constants';
 import './styles/game.css';
-import winRoundFile from './sounds/win_round.mp3';
-import loseRoundFile from './sounds/lose_round.mp3';
-import UIfx from 'uifx';
-
-const winRound = new UIfx(winRoundFile, { volume: 0.4, throttleMs: 100 });
-const loseRound = new UIfx(loseRoundFile, { volume: 0.4, throttleMs: 100 });
 
 class Game extends Component {
     images = {
@@ -33,19 +27,7 @@ class Game extends Component {
             .set('Authorization', `Bearer ${this.props.user}`)
             .send({ choice: weapon });
     };
-    playSound = () => {
-        if (!this.state.soundPlayed && this.props.room.winner !== 'no winner') {
-            if (this.props.room.winner === this.props.username) {
-                winRound.play();
-                this.setState({ soundPlayed: true });
-            } else {
-                loseRound.play();
-                this.setState({ soundPlayed: true });
-            }
-        } else if (this.state.soundPlayed !== false) {
-            this.setState({ soundPlayed: false });
-        }
-    };
+ 
     render() {
         const thisPlayer = this.props.room.users.find(
             user => user.username === this.props.username
@@ -119,7 +101,6 @@ class Game extends Component {
                         {thisPlayer.choice !== 'no choice' &&
                             this.props.room.winner !== 'no winner' && (
                                 <Fragment>
-                                    {this.playSound()}
                                     <div className="choices">
                                         <div>
                                             <h3>You:</h3>
