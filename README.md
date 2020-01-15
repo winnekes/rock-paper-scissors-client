@@ -1,7 +1,8 @@
 # Rock, Paper, Scissors, ~~Lizard, Spock~~
 
+[Play the game now here, also works on mobile](http://rps-the-game.netlify.com) (grab a friend!)
+
 ![Rock, Paper, Scissors](rps_landing.png)
-The game everyone knows in the world.
 
 Demo: ![Demo of RPS](rps.gif)
 
